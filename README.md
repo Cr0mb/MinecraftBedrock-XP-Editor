@@ -9,6 +9,11 @@
 
 In this tutorial, I will be showing you how I was able to find and change my experience level using Cheat Engine.
 
+The is only one librarie used that is simple and innovative, ```pymem.``` This is also made under ```python 3.12.6```
+```
+pip install pymem
+```
+
 The first step was to find the dynamic memory address for the experience level, as well as the data type that is used.
 
 To do this, I first had to assume that the experience level would be a float, I came accross this conclusion because a float allows for fractional values.
