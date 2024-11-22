@@ -1,6 +1,6 @@
 # Minecraft-Bedrock-XP
-This is a python script I made that reads and writes your XP value
 
+## A Python script to read and modify the experience level in Minecraft Bedrock Edition. This project demonstrates how to locate dynamic memory addresses, create pointer chains, and automate XP manipulation using Cheat Engine and Python.
 
 
 In this tutorial, I will be showing you how I was able to find and change my experience level using Cheat Engine.
