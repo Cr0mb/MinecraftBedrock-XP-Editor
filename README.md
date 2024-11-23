@@ -230,3 +230,17 @@ else:
     print("Could not find XP address.")
 
 ```
+
+I located the dynamic memory address for the XP value in Cheat Engine, opened the memory viewer, right-clicked the address, and selected "Find out what accesses this address."
+
+I examined the instructions accessing the dynamic address and selected the first one:
+7FF736EDA728 - F3 0F10 B9 84000000 - movss xmm7,[rcx+00000084].
+I added this instruction to the Code List for tracking.
+
+After restarting the game, I navigated to Advanced Options in Cheat Engine and reviewed the Code List. The instruction 7FF736EDA728 remained static across game resets. This instruction accesses multiple dynamic addresses, including the one corresponding to the XP value, as well as related data such as health and hunger.
+
+By selecting the instruction in the Code List and choosing "Find out what addresses this code reads from," I discovered a list of 28 dynamic addresses being accessed. Cheat Engine displays this under "Accessed addresses by 7FF736EDA728", and among these, I can consistently find the dynamic memory address for the XP value. The offset 0x84 is constant in the instruction, hinting at its relevance.
+I've also tried several approaches to derive a static pointer, I performed a pointer scan on the dynamic address for the XP value. Despite adjusting the limits and generating pointer maps, no results were returned.
+I could simpy use cheat engine, and save this instruction into a code list, but that is no fun! I want to make this into a python script where I can read my different values..
+
+It's important to note that the exp value is a float, and that rcx is also dynamic changing every time i restart or leave the game.
