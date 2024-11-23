@@ -178,3 +178,55 @@ print(f"Current XP value: {current_xp_value}")
 ```
 
  
+In the end, I was unable to find any pointers that work. They all changed whenever I tried to do a pointer scan, none of them are static. I'm at a loss on what to do at this point. I've tried using instructions from the memory of rsi 
+[code]
+7FF65DFFA90B - F3 0F10 8E 84000000  - movss xmm1,[rsi+00000084]
+[/code]
+
+but this didn't work neither, and I don't know why.
+
+[code]
+import pymem
+import pymem.process
+import struct
+
+pm = pymem.Pymem('Minecraft.Windows.exe')
+
+movss_pattern = b'\xF3\x0F\x10\x8E\x84\x00\x00\x00'  # movss xmm1,[rsi+00000084]
+offset_xp = 0x84
+
+def pattern_scan(module_name, pattern):
+    module = pymem.process.module_from_name(pm.process_handle, module_name)
+    module_start = module.lpBaseOfDll
+    module_size = module.SizeOfImage
+
+    module_bytes = pm.read_bytes(module_start, module_size)
+    
+    pattern_length = len(pattern)
+    for i in range(len(module_bytes) - pattern_length):
+        if module_bytes[i:i+pattern_length] == pattern:
+            return module_start + i
+    return None
+
+def find_register_address():
+    base_address = pattern_scan('Minecraft.Windows.exe', movss_pattern)
+    if base_address:
+        print(f"Base address found at: {hex(base_address)}")
+        xp_address = base_address + offset_xp
+        return xp_address
+    else:
+        print("Pattern not found.")
+        return None
+
+xp_address = find_register_address()
+
+if xp_address:
+    try:
+        current_xp_value = pm.read_float(xp_address)
+        print(f"Current XP value: {current_xp_value}")
+    except pymem.exception.MemoryReadError:
+        print("Failed to read the XP address.")
+else:
+    print("Could not find XP address.")
+
+[/code]
