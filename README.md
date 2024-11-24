@@ -7,6 +7,8 @@
 # A Python script to read and modify the experience level in Minecraft Bedrock Edition. This project demonstrates how to locate dynamic memory addresses, create pointer chains, and automate XP manipulation using Cheat Engine and Python.
 # This also works on realm servers.
 
+[UnknownCheats Forum](https://www.unknowncheats.me/forum/minecraft/673699-editing-experience-levels-minecraft-bedrock-python.html)
+
 In this tutorial, I will be showing you how I was able to find and change my experience level using Cheat Engine.
 
 The is only one librarie used that is simple and innovative, ```pymem.``` This is also made under ```python 3.12.6```
