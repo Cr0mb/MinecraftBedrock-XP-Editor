@@ -1,6 +1,7 @@
 ![image](https://github.com/user-attachments/assets/4fd16f3d-715c-4d69-acca-e4b7db31e937)
 
-
+## After doing further research, I've found AOB scanning to be the answer, however I have not figured out how to translate this into python, I have succesfully created a cheat table in Cheat Engine that allows me to do this.
+You can see information on that here: https://github.com/Cr0mb/Minecraft-Bedrock-Cheat-Engine-Table
 
 # Minecraft-Bedrock-XP
 
